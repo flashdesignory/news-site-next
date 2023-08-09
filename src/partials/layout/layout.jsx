@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 import Header from "../header/header";
 import Navigation from "../navigation/navigation";
@@ -21,11 +21,7 @@ export default function Layout({ children, id }) {
     }, [content, id]);
 
     const pageRef = useRef(null);
-    const { pathname } = useLocation();
-
-    useEffect(() => {
-        pageRef?.current?.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    }, [pathname]);
+    const pathname = usePathname();
 
     function closeMessage() {
         setShowMessage(false);
@@ -33,9 +29,9 @@ export default function Layout({ children, id }) {
 
     return (
         <>
-            <HashLink to={`${pathname}#content`} className="skip-link">
+            <Link href={`${pathname}#content`} className="skip-link">
                 {links.a11y.skip.label}
-            </HashLink>
+            </Link>
             <div className={styles.page} ref={pageRef}>
                 <Header />
                 <Navigation />

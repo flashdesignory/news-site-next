@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import classNames from "classnames";
 
 import { useDataContext } from "@/context/data-context";
@@ -14,9 +14,9 @@ import navStyles from "news-site-css/dist/nav.module.css";
 export default function Navbar({ callback }) {
     const { content } = useDataContext();
 
-    const location = useLocation();
+    const pathname = usePathname();
     // look up label from content
-    const activePath = content[location.pathname.split("/")[1]]?.name || "";
+    const activePath = content[pathname.split("/")[1]]?.name || "";
     const [isOpen, setIsOpen] = useState(false);
 
     function handleChange(e) {

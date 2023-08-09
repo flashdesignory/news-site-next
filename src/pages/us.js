@@ -4,7 +4,7 @@ import Head from "next/head";
 import { DataContextProvider } from "@/context/data-context";
 import Script from "next/script";
 
-export default function Index() {
+export default function Us() {
     return (
         <>
             <Head>
@@ -13,7 +13,7 @@ export default function Index() {
                 <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
             </Head>
             <DataContextProvider>
-                <Page id="home" />
+                <Page id="us" />
             </DataContextProvider>
             <Script src="./speedo.js" />
         </>
