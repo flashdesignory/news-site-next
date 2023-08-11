@@ -1,3 +1,31 @@
+// custom history events
+function triggerEvent(element, name, state) {
+    const event = new CustomEvent(name);
+    event.name = name;
+    event.state = state;
+    element.dispatchEvent(event);
+}
+
+const pushState = history.pushState;
+history.pushState = function(state) {
+    const fn = pushState.apply(history, arguments);
+    triggerEvent(window, "pushstate", state);
+    triggerEvent(window, "statechange", state);
+    return fn;
+};
+
+const replaceState = history.replaceState;
+history.replaceState = function(state) {
+    const fn = replaceState.apply(history, arguments);
+    triggerEvent(window, "replacestate", state);
+    triggerEvent(window, "statechange", state);
+    return fn;
+};
+
+window.addEventListener("popstate", function(event) {
+    triggerEvent(window, "statechange", event.state);
+});
+
 // this should probably come from environment variable.
 const appId = "222";
 
