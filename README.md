@@ -1,8 +1,8 @@
 # The Daily Broadcast
 
-## Preview
+## Link
 
-https://effortless-alpaca-9759f7.netlify.app/
+[https://flashdesignory-news-site-next.netlify.app/](https://flashdesignory-news-site-next.netlify.app/)
 
 ## Description
 
